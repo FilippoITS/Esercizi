@@ -356,10 +356,8 @@ guess_the_number(random_number)
 #Handle numbers from 1 to 3999.
 #Use a combination of string manipulation and conditional statements to build the Roman numeral.
 
-def given_to_roman (given_number:int):
+def given_to_roman (given_number:str) -> None:
     
-
-
     given_list:list = []
     
     for i in given_number:
@@ -370,77 +368,77 @@ def given_to_roman (given_number:int):
     
     numero_romano:list = []
 
-    if given_list[3] == 3:
-        numero_romano.append("MMM")
-    elif given_list[3] == 2:
-        numero_romano.append("MM")
-    elif given_list[3] == 1:
-        numero_romano.append("M")
-        
+    if len(given_list) >= 4:
+        if given_list[3] == 3:
+            numero_romano.append("MMM")
+        elif given_list[3] == 2:
+            numero_romano.append("MM")
+        elif given_list[3] == 1:
+            numero_romano.append("M")
+
+    if len(given_list) >= 3:
+        if given_list[2] == 9:
+                    numero_romano.append("CM")
+        elif  given_list[2] == 8:
+                    numero_romano.append("DCCC")
+        elif  given_list[2] == 7:
+                    numero_romano.append("DCC")
+        elif  given_list[2] == 6 :
+                    numero_romano.append("DC")
+        elif  given_list[2] == 5 :
+                    numero_romano.append("D")
+        elif  given_list[2] == 4 :
+                    numero_romano.append("CD")
+        elif  given_list[2] == 3 :
+                    numero_romano.append("CCC")
+        elif  given_list[2] == 2 :
+                    numero_romano.append("CC")
+        elif  given_list[2] == 1:
+                    numero_romano.append("C")   
     
+    if len(given_list) >= 2:
+        if  given_list[1] == 9:
+                    numero_romano.append("XC")
+        elif  given_list[1] == 8:
+                    numero_romano.append("LXXX")
+        elif  given_list[1] == 7:
+                    numero_romano.append("LXX")
+        elif  given_list[1] == 6 :
+                    numero_romano.append("LX")
+        elif  given_list[1] == 5 :
+                    numero_romano.append("L")
+        elif  given_list[1] == 4 :
+                    numero_romano.append("XL")
+        elif  given_list[1] == 3 :
+                    numero_romano.append("XXX")
+        elif  given_list[1] == 2 :
+                    numero_romano.append("XX")
+        elif  given_list[1] == 1:
+                    numero_romano.append("X")
     
-    if  given_list[2] == 9:
-                numero_romano.append("CM")
-    elif  given_list[2] == 8:
-                numero_romano.append("DCCC")
-    elif  given_list[2] == 7:
-                numero_romano.append("DCC")
-    elif  given_list[2] == 6 :
-                numero_romano.append("DC")
-    elif  given_list[2] == 5 :
-                numero_romano.append("D")
-    elif  given_list[2] == 4 :
-                numero_romano.append("CD")
-    elif  given_list[2] == 3 :
-                numero_romano.append("CCC")
-    elif  given_list[2] == 2 :
-                numero_romano.append("CC")
-    elif  given_list[2] == 1:
-                numero_romano.append("C")
-    
-    if  given_list[1] == 9:
-                numero_romano.append("XC")
-    elif  given_list[1] == 8:
-                numero_romano.append("LXXX")
-    elif  given_list[1] == 7:
-                numero_romano.append("LXX")
-    elif  given_list[1] == 6 :
-                numero_romano.append("LX")
-    elif  given_list[1] == 5 :
-                numero_romano.append("L")
-    elif  given_list[1] == 4 :
-                numero_romano.append("XL")
-    elif  given_list[1] == 3 :
-                numero_romano.append("XXX")
-    elif  given_list[1] == 2 :
-                numero_romano.append("XX")
-    elif  given_list[1] == 1:
-                numero_romano.append("X")
-    
-    if  given_list[0] == 9:
-                numero_romano.append("IX")
-    elif  given_list[0] == 8:
-                numero_romano.append("VIII")
-    elif  given_list[0] == 7:
-                numero_romano.append("VII")
-    elif  given_list[0] == 6 :
-                numero_romano.append("VI")
-    elif  given_list[0] == 5 :
-                numero_romano.append("V")
-    elif  given_list[0] == 4 :
-                numero_romano.append("IV")
-    elif  given_list[0] == 3 :
-                numero_romano.append("III")
-    elif  given_list[0] == 2 :
-                numero_romano.append("II")
-    elif  given_list[0] == 1:
-                numero_romano.append("I")
-     
-           
-    
+    if len(given_list) > 0:
+        if  given_list[0] == 9:
+                    numero_romano.append("IX")
+        elif  given_list[0] == 8:
+                    numero_romano.append("VIII")
+        elif  given_list[0] == 7:
+                    numero_romano.append("VII")
+        elif  given_list[0] == 6 :
+                    numero_romano.append("VI")
+        elif  given_list[0] == 5 :
+                    numero_romano.append("V")
+        elif  given_list[0] == 4 :
+                    numero_romano.append("IV")
+        elif  given_list[0] == 3 :
+                    numero_romano.append("III")
+        elif  given_list[0] == 2 :
+                    numero_romano.append("II")
+        elif  given_list[0] == 1:
+                    numero_romano.append("I")       
+       
     print(f"Il numero romano viene : {numero_romano} ")
     
     given_list.reverse()
-    print(f"Mentr il numero da te dato era : {given_list}")
+    print(f"Mentre il numero da te dato era : {given_list}")
 
-given_to_roman("1972")
+given_to_roman("229")
