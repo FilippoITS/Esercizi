@@ -125,7 +125,6 @@ class Animal:
 
     def change_leg(self,nuovezampe:int):
         self.zampe = nuovezampe
-
     
     def get_legs(self):
         print(f"L'animale in questione ha {self.zampe} zampe")
@@ -147,5 +146,55 @@ topo.print_info()
 print("################################")
 class Food:
 
-    def ciboo(self, name:str, price:str, description:str) -> None:
-        pass
+    def __init__(self, name:str, price:int, description:str) -> None:
+        self.name = name
+        self.price = price
+        self.description = description
+
+    def __str__(self) -> str:
+        return f"{self.name}: prezzo= {self.price} , descrizione= {self.description}"
+
+mela = Food("mela", 1, "Leva il medico di torno")
+pera = Food("pera", 20, "é buona")
+susina = Food("susina", 128, "ha un potere magico")
+pasta = Food("pasta", 4, "DAJE")
+kebab = Food("kebab", 12000, "Il più buono")
+acqua = Food("acqua", 4859, "Devi berla")
+
+class Menu:
+
+    def __init__(self, foods:list[Food] = []):
+        self.foods: list[Food] = foods
+
+    def add_food(self, food_to_add:str):
+        self.foods.append(food_to_add)
+        
+        self.foods.append(food_to_add)
+    
+    def remove_food(self, food_to_remove:str):       
+        self.foods.remove(food_to_remove)
+
+    def print_prices(self):
+        print (f"{self.foods}")
+    
+    def __str__(self) -> str:
+        repr: str = ""
+        for food in self.foods:
+            repr += food.__str__() + "\n"
+        avg_price:float = self.getAveragePrice()
+        repr += f"Prezzo medio = {avg_price}"
+        return f"{repr}"
+    
+    def getAveragePrice(self):
+        tot: float = 0        
+        for food in self.foods:
+            tot += food.price
+        avg_price = tot / len(self.foods)
+        return avg_price
+
+menu = Menu()
+menu.remove_food(pera)
+print(menu)
+
+
+
