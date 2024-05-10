@@ -1,10 +1,8 @@
-class Zoo:
-
-    def __init__(self) -> None:
-        self.recinti = Recinto
-        self.guardiani = Guardiano
-
-
+#3. feed(animal: Animal) (Dai da mangiare agli animali): implementa un metodo che consenta al guardiano dello zoo di
+#nutrire tutti gli animali dello zoo. Ogni volta che un animale viene nutrito, 
+#la sua salute incrementa di 1% rispetto alla sua salute corrente, 
+#ma le dimensioni dell'animale (height e width) vengono incrementate del 2%. 
+#Perciò, l'animale si può nutrire soltanto se il recinto ha ancora spazio a sufficienza per ospitare l'animale ingrandito dal cibo.
 class Animal:
     
     def __init__(self, name:str, species:str, age:int,
@@ -22,11 +20,6 @@ class Animal:
     def __str__(self) -> str:
         return f"{self.name}: specie={self.species}, età={self.age}-anni, larghezza={self.whidt}, 
         lunghezza={self.height}, Habitat Preferibile={self.preferred_habitat}, Salute={self.healt}"
-
-gallina = Animal("Gallina", "Gallus", 8, 20, 45, "normale")
-orso_polare = Animal("Orso Polare", "Orso", 4, 70, 220, "freddo")
-leone = Animal("Leone", "???", 23, 45, 115, "caldo")
-pappagallo = Animal ("Pappagallo", "Ara", 56, 5, 5, "caldo")
 
 
 class Fence:
@@ -57,7 +50,10 @@ class ZooKeeper:
     def feed_animal(self, food_to_feed:int):
         pass
 
+class Zoo:
 
+    def __init__(self) -> None:
+        pass
 
         
 
