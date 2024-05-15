@@ -1,23 +1,38 @@
 class Person:
-
-    def __init__(self, cf: str, name:str, surname:str, age:int) -> None:
-        self.cf = cf
-        self.name = name
-        self.surname = surname
-        self.age = age
-
+    
+    def __init__(self, cf: str, name: str, surname: str, age: int):
+        self.cf: str = cf
+        self.name: str = name
+        self.surname: str = surname
+        self.age: int = age
+        
 class Student(Person):
     
-    def __init__(self, id: str,  cf: str, name: str, surname: str, age: int) -> None:
+    def __init__(self, id: str, cf: str, name: str, surname: str, age: int):
         super().__init__(cf, name, surname, age)
-        self.id = id
+        self.id: str = id
         self.group = None
-    
-    def withdraw (self):
-        if self.group is not None:
-            self.group.students.remove(self)
-            self.group.limit_students += 1
-            self.group = None
-            return True
+        
+    def withdraw(self) -> bool:
+        if self.group:
+            if self.group.remove_student(self):
+                self.group = None
+                return True
         return False
+    
+    def __str__(self) -> str:
+        return f'Student(id={self.id}, cf={self.cf}, name={self.name}'\
+            f', surname={self.surname}, age={self.age})'
+            
+            
+class Professor(Person):
+    
+    def __init__(self, id: str, degree: str,  cf: str, name: str, surname: str, age: int):
+        super().__init__(cf, name, surname, age)
+        self.id: str = id
+        self.degree: str = degree
+        
+    def __str__(self) -> str:
+        return f'Prof(id={self.id}, cf={self.cf}, name={self.name}'\
+            f', surname={self.surname}, age={self.age}, degree={self.degree})'
  
