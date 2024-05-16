@@ -1,4 +1,4 @@
-class Room:
+class  Room:
     
     def __init__(self, name: str, floor: int, num_seats: int):
         self.set_name(name)
