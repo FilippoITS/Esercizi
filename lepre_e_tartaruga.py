@@ -2,7 +2,7 @@ import random
 
 print("################################\nBANG !!!!! AND THEY'RE OFF !!!!!\n################################\n")
 
-course: list = []
+course: list[str] = []
 
 for i in range(0,70):
     course.append("_") #creo il percorso di 70 caselle
@@ -11,7 +11,7 @@ hare:str = "H"
 turtle:str = "T"
 
 
-def turtle_position(stamin) -> list[int]: #list[0] -> passo da eseguire, list[1] -> modificatore stamina
+def turtle_position(stamin:int) -> list[int]: #list[0] -> passo da eseguire, list[1] -> modificatore stamina
     
     stamina : int = stamin
     
@@ -48,11 +48,11 @@ def turtle_position(stamin) -> list[int]: #list[0] -> passo da eseguire, list[1]
                 else:
                     print("T -> Passo lento")
                     return [1, -3]
-        else:
-            return [0, +10]
+    else:
+        return [0, +10]
 
 
-def hare_position(stamin) -> list[int]:
+def hare_position(stamin: int) -> list[int] :
     
     stamina : int = stamin
 
@@ -110,11 +110,20 @@ def hare_position(stamin) -> list[int]:
                 return [0, +0]
 
 
-def course_position(turtle:str, hare:str, course:list):
+def course_position(turtle:str, hare:str, course:list[str]):
     contatore: int = 0
     staminaT:int = 100
     staminaH:int = 100
     
+    malus: dict[int, int] = {15 : -4, 31 : -15, 58 : -9}
+    bonus: dict[int, int] = {20 : +3, 38 : +7, 53 : +13}
+
+    for indexB, bonuS in bonus.items():
+        course[indexB] = bonuS
+    
+    for indexM, maluS in malus.items():
+        course[indexM] = maluS
+
     while True:
         contatore += 1
 
@@ -160,7 +169,7 @@ def course_position(turtle:str, hare:str, course:list):
         
 
         if course[-1] == "_":           
-
+            
                 if passo_turle + index_turtle >= 70:
                     course[index_turtle] = "_"
                     course[-1] = turtle
@@ -173,6 +182,17 @@ def course_position(turtle:str, hare:str, course:list):
                     else:
                         course[index_turtle] = "_"
                         pos_vera = index_turtle + passo_turle
+                        
+                        for indexO, bonuS in bonus.items():
+                            if pos_vera == indexO:
+                                pos_vera += bonuS
+                                print(f"Bonus preso da T {bonuS}")
+                        
+                        for indexM, maluS in malus.items():
+                            if pos_vera == indexM:
+                                pos_vera += maluS
+                                print(f"Malus preso da T {maluS}")
+                        
                         course[pos_vera] = turtle
                 
                 
@@ -194,6 +214,17 @@ def course_position(turtle:str, hare:str, course:list):
                     else:
                         course[index_hare] = "_"
                         pos_veraa = index_hare + passo_hare
+                        
+                        for indexO, bonuS in bonus.items():
+                            if pos_veraa == indexO:
+                                pos_veraa += bonuS
+                                print(f"Bonus preso da H{bonuS}")
+                        
+                        for indexM, maluS in malus.items():
+                            if pos_veraa == indexM:
+                                pos_veraa += maluS
+                                print(f"Malus preso da H {maluS}")
+                        
                         course[pos_veraa] = hare
         else:
             print(f"Ha vinto,{course[-1]}")
@@ -202,7 +233,8 @@ def course_position(turtle:str, hare:str, course:list):
         
         if pos_vera == pos_veraa:
             print("OUCH")
-            
+            course[pos_vera] = turtle
+            course[pos_veraa] = hare
     
         print(course,"\n")   
 
