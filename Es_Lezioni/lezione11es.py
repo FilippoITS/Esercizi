@@ -31,30 +31,37 @@ class Cinema:
     def __init__(self) -> None:
         self.sale : list[Sala] = []
     
+
     def aggiungi_sala(self, sala: Sala) -> str:
         if sala not in self.sale:
             self.sale.append(sala)
         else:
             print("La sala è gia presente all'interno del cinema")
     
+
     def prenota_film(self, name: str , num_posti: int) -> str:
         for sala in self.sale:
             if name != sala.film.film_name:
-                print("Non puoi prenotare un film che non c'è")
+                continue
             else:
                 sala.prenota_posti(num_posti)
                 print("Il film è stato prenotato con successo")
+                return
+        
+        print("Non puoi prenotare un film che non c'é")
 
 
 cinema = Cinema()
 film1 = Film("Nome1", 90)
+film2 = Film("nome2", 28389)
 sala1 = Sala(1234, film1, 150)
+sala2 = Sala(12345,film2, 2020 )
 sala1.prenota_posti(98)
+cinema.aggiungi_sala(sala2)
 cinema.aggiungi_sala(sala1)
-cinema.prenota_film("Nome1", 10)
-cinema.prenota_film("nome8", 10)
+cinema.prenota_film("nome2", 200)
 sala1.posti_disponibili()
-
+sala2.posti_disponibili()
 
 print("\n","#" * 90,"\n")
 
