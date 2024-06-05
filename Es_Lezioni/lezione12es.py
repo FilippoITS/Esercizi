@@ -73,10 +73,7 @@ class MovieCatalog:
     
         for k,v in self.movies.items():
             if director_name == k:
-                
-                for movie in movies:
-                    v.append(movie)
-                
+                self.movies[director_name] += movies 
                 print(f"L'ature = {director_name}| Ora ha questi nuovi film {movies}")
         
         if director_name not in self.movies.keys():
