@@ -22,7 +22,8 @@ class Noleggio:
     def rentAMovie(self, film:Film, clientId:int) -> None:
         if film in self.films:
             self.films.remove(film)
-            self.rented_film[clientId] = []
+            if clientId not in self.rented_film:
+                self.rented_film[clientId] = []
             self.rented_film[clientId].append(film)
             print(f"Il cliente ha {clientId} ha prenotato il fiml {film.getTitle()}")
         else:
@@ -58,6 +59,7 @@ b= Commedia(122, "CICCICIICICICJIICICIC")
 n = Noleggio([a,b])
 n.isAvaible(a)
 n.rentAMovie(a, 1289)
+n.rentAMovie(b, 1289)
 print(n.rented_film)
 n.printMovies()
 n.printRentMovies(1289)
